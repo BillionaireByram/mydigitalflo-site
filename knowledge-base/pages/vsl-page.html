@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Renting Intelligence | My Digital Flo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #050509;
+            --bg-secondary: #0a0a12;
+            --text-primary: #ffffff;
+            --text-secondary: #8a8a9a;
+            --accent: #00a0ff;
+            --accent-glow: rgba(0, 160, 255, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 50% 0%, rgba(0, 160, 255, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 0 100px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            background: rgba(0, 160, 255, 0.1);
+            border: 1px solid rgba(0, 160, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: clamp(1.75rem, 5vw, 2.75rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        h1 .accent {
+            color: var(--accent);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 60px rgba(0, 160, 255, 0.1);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+
+        .video-wrapper iframe,
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Placeholder for video */
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, #0f0f1a 100%);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover {
+            background: linear-gradient(135deg, #0f0f1a 0%, #151525 100%);
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            box-shadow: 0 0 40px var(--accent-glow);
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover .play-button {
+            transform: scale(1.1);
+            box-shadow: 0 0 60px var(--accent-glow);
+        }
+
+        .play-button svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+            margin-left: 4px;
+        }
+
+        .video-placeholder p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            margin-top: 40px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #00a0ff 0%, #0066ff 100%);
+            color: white;
+            padding: 20px 48px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px var(--accent-glow);
+        }
+
+        .cta-subtext {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Trust Elements */
+        .trust-section {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .trust-items {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .trust-item svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--accent);
+        }
+
+        /* Modal for Calendar */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 90vh;
+            overflow: auto;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            main {
+                padding: 40px 0 60px;
+            }
+
+            .cta-button {
+                padding: 18px 32px;
+                font-size: 1rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .trust-items {
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <header>
+        <div class="container">
+            <div class="logo"><img src="logo.webp" alt="Digital Flo" style="height: 32px;"></div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="eyebrow">Free Training</div>
+            
+            <h1>Stop <span class="accent">Renting</span> Intelligence.<br>Start Owning It.</h1>
+            
+            <p class="subtitle">
+                Watch this short video to discover how to replace 15 fragmented AI tools with one centralized system you actually own.
+            </p>
+
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <!-- Replace with actual video embed -->
+                    <div class="video-placeholder" onclick="playVideo()">
+                        <div class="play-button">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <p>Click to play (2:45)</p>
+                    </div>
+                    <!-- 
+                    Uncomment and replace VIDEO_ID when ready:
+                    <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0" frameborder="0" allowfullscreen></iframe>
+                    
+                    Or for Wistia:
+                    <iframe src="https://fast.wistia.net/embed/iframe/VIDEO_ID" allowfullscreen></iframe>
+                    
+                    Or for Vimeo:
+                    <iframe src="https://player.vimeo.com/video/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+                    -->
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <a href="https://www.mydigitalflo.io/widget/booking/GMureoKJSypyKal4g1LE" class="cta-button">
+                    Book Your Strategy Call
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                    </svg>
+                </a>
+                <p class="cta-subtext">Free 30-min call · No obligation · Limited spots</p>
+            </div>
+
+            <div class="trust-section">
+                <div class="trust-items">
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        Done-For-You Build
+                    </div>
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        No Monthly AI Fees
+                    </div>
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        You Own Everything
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Calendar Modal -->
+    <div class="modal-overlay" id="calendarModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeCalendar()">×</button>
+            <!-- Replace with your GHL calendar embed -->
+            <iframe 
+                src="https://www.mydigitalflo.io/widget/booking/GMureoKJSypyKal4g1LE" 
+                style="width:100%; height:600px; border:none; border-radius:12px;"
+                title="Book a Call">
+            </iframe>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 My Digital Flo. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function playVideo() {
+            // Replace placeholder with actual video
+            // For now, just alert
+            alert('Replace with video embed. See comments in HTML.');
+            
+            // Example for YouTube:
+            // document.querySelector('.video-placeholder').innerHTML = '<iframe src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&rel=0" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>';
+        }
+
+        function openCalendar() {
+            document.getElementById('calendarModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCalendar() {
+            document.getElementById('calendarModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on outside click
+        document.getElementById('calendarModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCalendar();
+            }
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeCalendar();
+            }
+        });
+    </script>
+</body>
+</html>

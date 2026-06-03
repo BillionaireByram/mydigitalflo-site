@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DigitalFlo Consultations Page</title>
+  <meta name="description" content="Book a DigitalFlo consultation with Byram to map the highest-leverage AI agent and automation opportunities in your business." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050509;
+      --panel: rgba(10, 12, 28, 0.76);
+      --panel-strong: rgba(10, 12, 28, 0.92);
+      --line: rgba(255, 255, 255, 0.11);
+      --text: #ffffff;
+      --muted: #b7c7d8;
+      --soft: #8a8a9a;
+      --blue: #00a0ff;
+      --bright-blue: #00c8ff;
+      --deep-blue: #0066ff;
+      --gradient: linear-gradient(135deg, #00c8ff 0%, #00a0ff 48%, #0066ff 100%);
+      --glow: 0 0 80px rgba(0, 160, 255, 0.34), 0 0 120px rgba(0, 200, 255, 0.14);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background:
+        radial-gradient(circle at 22% -8%, rgba(0, 160, 255, 0.28), transparent 36%),
+        radial-gradient(circle at 82% 8%, rgba(0, 200, 255, 0.16), transparent 34%),
+        radial-gradient(circle at 50% 100%, rgba(52, 211, 153, 0.08), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(circle at 50% 8%, black, transparent 72%);
+      z-index: 0;
+    }
+
+    a { color: inherit; }
+    .page-shell { position: relative; z-index: 1; min-height: 100vh; }
+    .container { width: min(1160px, calc(100% - 36px)); margin: 0 auto; }
+
+    .site-header { position: sticky; top: 14px; z-index: 30; padding: 14px 0 0; }
+    .nav-card {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 13px 14px 13px 20px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(10, 12, 28, 0.88), rgba(5, 5, 9, 0.84));
+      backdrop-filter: blur(22px);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.36), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; min-width: max-content; }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: rgba(0, 160, 255, 0.10);
+      border: 1px solid rgba(0, 160, 255, 0.28);
+      box-shadow: 0 0 34px rgba(0, 160, 255, 0.5);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+    .brand-copy strong { display: block; font-size: 0.88rem; letter-spacing: 0.18em; text-transform: uppercase; line-height: 1; }
+    .brand-copy span { display: block; margin-top: 5px; color: var(--soft); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .nav-links { display: flex; align-items: center; gap: 22px; color: var(--muted); font-size: 0.9rem; font-weight: 500; }
+    .nav-links a { text-decoration: none; transition: color .2s ease; }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta, .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+      white-space: nowrap;
+    }
+    .nav-cta { min-height: 46px; padding: 0 18px; background: rgba(255,255,255,0.06); }
+    .nav-cta:hover, .btn:hover { transform: translateY(-1px); border-color: rgba(0,200,255,0.48); }
+    .btn { min-height: 56px; padding: 0 24px; }
+    .btn-primary { border: 0; background: var(--gradient); color: #00111f; box-shadow: var(--glow); }
+    .btn-secondary { background: rgba(255,255,255,0.06); color: #fff; }
+
+    .hero { padding: 86px 0 44px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(330px, 0.92fr); gap: 44px; align-items: center; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding: 8px 12px;
+      border: 1px solid rgba(0, 200, 255, 0.26);
+      border-radius: 999px;
+      background: rgba(0, 160, 255, 0.08);
+      color: #8fe9ff;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .pulse { width: 8px; height: 8px; border-radius: 999px; background: var(--bright-blue); box-shadow: 0 0 0 7px rgba(0, 200, 255, 0.12); }
+    h1 { margin: 0; max-width: 800px; font-size: clamp(3rem, 7vw, 5.65rem); line-height: 0.92; letter-spacing: -0.08em; }
+    .gradient-text { background: linear-gradient(135deg, #fff 0%, #b9ecff 48%, #61c9ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-copy { margin: 24px 0 0; max-width: 670px; color: var(--muted); font-size: clamp(1.08rem, 2.2vw, 1.34rem); line-height: 1.65; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+    .micro-proof { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; color: var(--soft); font-size: 0.92rem; }
+    .micro-proof span { padding: 9px 12px; border: 1px solid rgba(255,255,255,0.1); border-radius: 999px; background: rgba(255,255,255,0.04); }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(10, 12, 28, 0.86), rgba(5, 5, 9, 0.72));
+      box-shadow: 0 28px 90px rgba(0,0,0,0.34), inset 0 1px 0 rgba(255,255,255,0.08);
+      backdrop-filter: blur(22px);
+    }
+    .card::before { content: ""; position: absolute; inset: -120px -90px auto auto; width: 260px; height: 260px; border-radius: 50%; background: rgba(0, 200, 255, 0.16); filter: blur(4px); }
+    .card > * { position: relative; }
+    .card h2 { margin: 0 0 18px; font-size: 1.75rem; line-height: 1.08; letter-spacing: -0.045em; }
+    .audit-list { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+    .audit-list li { display: flex; gap: 12px; align-items: flex-start; color: var(--muted); }
+    .check { flex: 0 0 auto; display: grid; place-items: center; width: 25px; height: 25px; border-radius: 999px; background: rgba(0, 200, 255, 0.13); color: #8fe9ff; font-weight: 900; }
+    .callout { margin-top: 22px; padding: 16px; border-radius: var(--radius-md); background: rgba(0, 160, 255, 0.08); border: 1px solid rgba(0, 160, 255, 0.18); color: #d7f6ff; }
+
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 42px; }
+    .metric { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: rgba(255,255,255,0.055); }
+    .metric strong { display: block; font-size: 1.85rem; letter-spacing: -0.055em; }
+    .metric span { display: block; margin-top: 7px; color: var(--soft); font-size: 0.92rem; }
+
+    .section { padding: 72px 0 0; }
+    .section h2 { margin: 0 0 12px; max-width: 780px; font-size: clamp(2rem, 4.6vw, 3.35rem); line-height: 1; letter-spacing: -0.07em; }
+    .section-lead { margin: 0; max-width: 760px; color: var(--muted); font-size: 1.08rem; line-height: 1.65; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+    .step { padding: 24px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: rgba(255,255,255,0.055); }
+    .step b { display: inline-flex; margin-bottom: 18px; color: #8fe9ff; font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; }
+    .step h3 { margin: 0 0 10px; font-size: 1.35rem; letter-spacing: -0.04em; }
+    .step p { margin: 0; color: var(--muted); }
+
+    .final-cta {
+      margin: 74px 0 44px;
+      padding: clamp(30px, 5vw, 52px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(135deg, rgba(0, 200, 255, 0.13), rgba(0, 102, 255, 0.16)),
+        rgba(255,255,255,0.055);
+      text-align: center;
+      box-shadow: 0 24px 90px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .final-cta h2 { margin: 0 auto 14px; max-width: 820px; font-size: clamp(2rem, 4.8vw, 3.55rem); line-height: 1; letter-spacing: -0.07em; }
+    .final-cta p { margin: 0 auto 28px; max-width: 680px; color: var(--muted); font-size: 1.08rem; }
+    footer { padding: 0 0 36px; color: rgba(255,255,255,0.42); text-align: center; font-size: 0.86rem; }
+
+    @media (max-width: 900px) {
+      .hero-grid, .steps { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero { padding-top: 58px; }
+    }
+    @media (max-width: 560px) {
+      .container { width: min(100% - 24px, 1160px); }
+      .site-header { position: relative; top: 0; }
+      .nav-card { align-items: flex-start; flex-direction: column; border-radius: 24px; }
+      .nav-cta, .btn { width: 100%; }
+      .hero-actions { width: 100%; }
+      .card { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container">
+        <nav class="nav-card" aria-label="Primary">
+          <a class="brand" href="/" aria-label="DigitalFlo home">
+            <span class="brand-mark">DF</span>
+            <span class="brand-copy"><strong>DigitalFlo</strong><span>Agent Operating Systems</span></span>
+          </a>
+          <div class="nav-links" aria-label="Page sections">
+            <a href="#what-you-get">What you get</a>
+            <a href="#process">Process</a>
+            <a href="#book">Book</a>
+          </div>
+          <a class="nav-cta" href="https://calendly.com/byram-digitalflo/30min">Book with Byram</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow"><span class="pulse"></span> Strategy Consultation</div>
+            <h1>DigitalFlo Consultations Page</h1>
+            <p class="hero-copy">
+              Book a focused strategy call with Byram to map where AI agents, automation, and better follow-up can remove bottlenecks, capture more revenue, and give your team a cleaner operating system.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://calendly.com/byram-digitalflo/30min">Schedule your consultation</a>
+              <a class="btn btn-secondary" href="#what-you-get">See what we map</a>
+            </div>
+            <div class="micro-proof" aria-label="Consultation proof points">
+              <span>30-minute strategy call</span>
+              <span>Revenue + operations review</span>
+              <span>Clear first-agent build path</span>
+            </div>
+          </div>
+
+          <aside class="card" aria-label="Consultation checklist">
+            <h2>On the call, we identify:</h2>
+            <ul class="audit-list">
+              <li><span class="check">✓</span><span>Where leads, prospects, or client requests slow down.</span></li>
+              <li><span class="check">✓</span><span>Which manual handoffs an agent can safely own first.</span></li>
+              <li><span class="check">✓</span><span>What proof, dashboards, and approval gates your team needs.</span></li>
+              <li><span class="check">✓</span><span>The smallest deployable version that can create measurable lift.</span></li>
+            </ul>
+            <div class="callout">Bring the workflow, funnel, or operational mess you want cleaned up first. We will turn it into a practical action map.</div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="container metrics" aria-label="Expected consultation outcomes">
+        <div class="metric"><strong>30 min</strong><span>Focused call with a clear next-step map.</span></div>
+        <div class="metric"><strong>3 leaks</strong><span>We isolate the highest-impact revenue or ops leaks first.</span></div>
+        <div class="metric"><strong>1 plan</strong><span>You leave with a practical automation direction.</span></div>
+      </section>
+
+      <section class="container section" id="what-you-get">
+        <h2>What your DigitalFlo consultation covers</h2>
+        <p class="section-lead">
+          This is not a vague AI brainstorm. It is a practical operating review designed to turn your current friction into a clear build path.
+        </p>
+        <div class="steps" id="process">
+          <article class="step">
+            <b>01</b>
+            <h3>Diagnose the bottleneck</h3>
+            <p>We look at your current funnel, client flow, team handoffs, and the moments where speed or visibility breaks down.</p>
+          </article>
+          <article class="step">
+            <b>02</b>
+            <h3>Map the agent workflow</h3>
+            <p>We define what an agent should read, draft, update, escalate, and prove before anything client-visible happens.</p>
+          </article>
+          <article class="step">
+            <b>03</b>
+            <h3>Choose the first ship</h3>
+            <p>You get a recommended first workflow with scope, success criteria, and the safest path to deploy without overbuilding.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="container final-cta" id="book" aria-labelledby="cta-title">
+        <h2 id="cta-title">Ready to see where AI can actually move the business?</h2>
+        <p>Grab a time with Byram. DigitalFlo will map the first workflow that should be automated, agent-assisted, or rebuilt.</p>
+        <a class="btn btn-primary" href="https://calendly.com/byram-digitalflo/30min">Book the DigitalFlo consultation</a>
+      </section>
+    </main>
+
+    <footer>DigitalFlo — Agent systems, automations, and proof-backed execution.</footer>
+  </div>
+</body>
+</html>
